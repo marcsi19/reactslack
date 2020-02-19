@@ -17,7 +17,7 @@ class MessageForm extends React.Component {
 
   createMessage = () => {
     const message = {
-      timestamp: firebase.database.ServerValue.TIMESTAM,
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
       user: {
         id: this.state.user.uid,
         name: this.state.user.displayName,

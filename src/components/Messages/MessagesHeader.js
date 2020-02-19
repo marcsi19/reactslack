@@ -19,7 +19,8 @@ class MessagesHeader extends React.Component {
             size='mini'
             icon='search'
             name='serachTerm'
-            placeholder='Search Messages' />
+            placeholder='Search Messages'
+          />
         </Header>
       </Segment>
     )

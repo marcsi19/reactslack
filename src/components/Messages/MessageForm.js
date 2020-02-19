@@ -31,8 +31,9 @@ class MessageForm extends React.Component {
   sendMessage = () => {
     const { messagesRef } = this.props
     const { message, channel } = this.state
+
     if (message) {
-      this.setStaete({ loaading: false })
+      this.setState({ loaading: false })
       messagesRef
         .child(channel.id)
         .push()
@@ -43,7 +44,8 @@ class MessageForm extends React.Component {
         .catch(err => {
           console.error(err)
           this.setState({
-            laoading: false, errors: this.state.errors.concat(err)
+            laoading: false,
+            errors: this.state.errors.concat(err)
           })
         })
     } else {
@@ -52,13 +54,17 @@ class MessageForm extends React.Component {
       })
     }
   }
+
   render() {
-    const { errors } = this.state
+    const { errors, message, loading } = this.state
+
     return (
       <Segment className='message__form'>
         <Input
-          fluidname='message'
+          fluid
+          name='message'
           style={{ marginBottom: '0.7em' }}
+          value={message}
           onChange={this.handleChange}
           label={<Button icon={'add'} />}
           labelPosition='left'
@@ -69,6 +75,7 @@ class MessageForm extends React.Component {
         <Button.Group icon widths='2'>
           <Button
             onClick={this.sendMessage}
+            disabled={loading}
             color='orange'
             content='Add Reply'
             labelPosition='left'

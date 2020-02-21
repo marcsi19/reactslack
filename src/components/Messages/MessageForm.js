@@ -52,7 +52,7 @@ class MessageForm extends React.Component {
     const { message, channel } = this.state
 
     if (message) {
-      this.setState({ loaading: true })
+      this.setState({ loading: true })
       messagesRef
         .child(channel.id)
         .push()
@@ -63,7 +63,7 @@ class MessageForm extends React.Component {
         .catch(err => {
           console.error(err)
           this.setState({
-            laoading: false,
+            loading: false,
             errors: this.state.errors.concat(err)
           })
         })
@@ -152,6 +152,7 @@ class MessageForm extends React.Component {
           />
           <Button
             color='teal'
+            disabled={uploadState === 'uploading'}
             onClick={this.openModal}
             content='Upload Media'
             labelPosition="right"
